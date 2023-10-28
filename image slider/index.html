@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Styling for the image slider container */
+        .slider-container {
+            width: 60%;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+        }
+
+        /* Styling for the image slider */
+        .slider {
+            display: flex;
+            transition: all 0.2s ease;
+        }
+
+        /* Styling for individual slides */
+        .slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* Styling for navigation buttons */
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .slider-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide"><img src="http://3.bp.blogspot.com/-YI0OY1UcgjE/UZMe1GLCEOI/AAAAAAAAAoM/28f8D2Xwjy0/s1600/best-quote-4.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="https://wallpaperaccess.com/full/3501275.jpg"></div>
+            <div class="slide"><img src="http://www.goal-setting-guide.com/wallpapersimages/ACHIEVEMENTwall-1024-768.jpg"></div>
+            <!-- Add more slides as needed -->
+        </div>
+    </div>
+
+    <div class="slider-nav">
+        <button class="slider-button" onclick="prevSlide()">Previous</button>
+        <button class="slider-button" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            if (index < 0) {
+                currentIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+                currentIndex = 0;
+            }
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${100 * (i - currentIndex)}%)`;
+            });
+        }
+
+        function nextSlide() {
+            currentIndex++;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex--;
+            showSlide(currentIndex);
+        }
+
+        // Initialize the slider
+        showSlide(currentIndex);
+    </script>
+</body>
+</html>
